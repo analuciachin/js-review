@@ -16,16 +16,21 @@ const people = [
 // Exercises
 
 // 1) What is the average income of all the people in the array?
-
+console.log(people.reduce((a,b) => a + parseInt(b.salary), 0) / people.length)
 
 // 2) Who are the people that are currently older than 30?
-console.log(people.filter(person => person.DOB < '01/01/1990'))
-
+console.log(people.filter(person => new Date(person.DOB) < new Date('01/01/1990')))
 
 // 3) Get a list of the people's full name (firstName and lastName).
-
+people.forEach(person => console.log(person.firstName + ' ' + person.lastName))
 
 // 4) Get a list of people in the array ordered from youngest to oldest.
-
+console.log(people.sort(function(a,b) {
+  return new Date(a.DOB) - new Date(b.DOB)
+}))
 
 // 5) How many people are there in each department?
+console.log('# people in Dev: ', people.filter(person => person.department === 'Development').length)
+console.log('# people in Sales: ', people.filter(person => person.department === 'Sales').length)
+console.log('# people in Marketing: ', people.filter(person => person.department === 'Marketing').length)
+console.log('# people in Office Management: ', people.filter(person => person.department === 'Office Management').length)
